@@ -9,6 +9,7 @@ class Robot(object):
         self.valid_actions = self.maze.valid_actions
         self.state = None
         self.action = None
+        self.boom = 0
 
         # Set Parameters of the Learning Robot
         self.alpha = alpha
@@ -120,6 +121,9 @@ class Robot(object):
 
         action = self.choose_action() # choose action for this state
         reward = self.maze.move_robot(action) # move robot for given action
+
+        if reward <-29: #如果遇到炸弹，则把随机概率调大
+            self.t = 0
 
         next_state = self.sense_state() # get next state
         self.create_Qtable_line(next_state) # create q table line for next state
